@@ -199,6 +199,35 @@ a { color: inherit; }
   margin-top: 38px;
 }
 
+.hero-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin-top: 30px;
+}
+.hero-contacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.12rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.hero-contacts a:hover { color: var(--gold); }
+.hero-contacts svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .btn {
   display: inline-block;
   padding: 14px 26px;
