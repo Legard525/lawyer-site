@@ -6,7 +6,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "23 * * * *"   # hourly, to pick up new Telegram posts
+    - cron: "17 3 * * *"   # daily at 06:17 Moscow time, to pick up new Telegram posts
   workflow_dispatch:
 
 permissions:
@@ -47,7 +47,7 @@ jobs:
           path: _site
       # GitHub pauses scheduled workflows in repos with no activity for 60 days.
       # Re-enabling this workflow through the API restarts that clock.
-      - name: Keep the hourly schedule alive
+      - name: Keep the daily schedule alive
         if: github.event_name == 'schedule'
         run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/pages.yml/enable"
         env:
