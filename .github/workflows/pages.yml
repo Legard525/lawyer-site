@@ -28,8 +28,20 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install beautifulsoup4==4.12.3
-      # Fails (and so keeps the last good deploy live) if Telegram is unreachable
-      - run: python tools/tg_mirror.py --out _site
+      # Last good Telegram fetch: used when Telegram is unreachable, so site
+      # changes still deploy. Restores the newest tg-* entry.
+      - uses: actions/cache/restore@v4
+        with:
+          path: .tg-cache
+          key: tg-none
+          restore-keys: tg-
+      - run: python tools/tg_mirror.py --out _site --cache .tg-cache
+      # Keyed by content, so a new entry is stored only when the posts change
+      - uses: actions/cache/save@v4
+        continue-on-error: true
+        with:
+          path: .tg-cache
+          key: tg-${{ hashFiles('.tg-cache/posts.json') }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

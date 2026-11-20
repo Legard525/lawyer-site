@@ -15,6 +15,7 @@ Needs:  beautifulsoup4
 """
 import argparse
 import html
+import json
 import re
 import shutil
 import sys
@@ -44,16 +45,17 @@ KEEP_TAGS = {"b", "strong", "i", "em", "u", "s", "del", "code", "pre", "blockquo
 
 
 def fetch(url, binary=False):
-    for attempt in range(3):
+    delays = [5, 15, 30]
+    for attempt in range(len(delays) + 1):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": UA})
             with urllib.request.urlopen(req, timeout=30) as r:
                 data = r.read()
             return data if binary else data.decode("utf-8")
         except Exception:
-            if attempt == 2:
+            if attempt == len(delays):
                 raise
-            time.sleep(3 * (attempt + 1))
+            time.sleep(delays[attempt])
 
 
 def clean_html(node):
@@ -252,16 +254,45 @@ def fill_feed(path, block):
     path.write_text(text, encoding="utf-8")
 
 
+def save_cache(posts, out, cache):
+    """Keep the last good fetch so a Telegram outage doesn't block deploys."""
+    if cache.exists():
+        shutil.rmtree(cache)
+    shutil.copytree(out / "assets" / "tg", cache / "tg")
+    keep = ("id", "html", "plain", "teaser", "images", "link", "forwarded", "media_in_tg")
+    rows = [{**{k: p[k] for k in keep}, "date": p["date"].isoformat() if p["date"] else None}
+            for p in posts]
+    (cache / "posts.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def load_cache(out, cache):
+    shutil.copytree(cache / "tg", out / "assets" / "tg", dirs_exist_ok=True)
+    rows = json.loads((cache / "posts.json").read_text(encoding="utf-8"))
+    for p in rows:
+        p["date"] = datetime.fromisoformat(p["date"]) if p["date"] else None
+    return rows
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--out", default="_site", help="output folder, relative to the site root")
-    out = (ROOT / ap.parse_args().out).resolve()
+    ap.add_argument("--cache", help="folder for the last good fetch, used if Telegram is unreachable")
+    args = ap.parse_args()
+    out = (ROOT / args.out).resolve()
+    cache = (ROOT / args.cache).resolve() if args.cache else None
     if out == ROOT or ROOT.is_relative_to(out):
         sys.exit("--out must be a subfolder of the site, not the site itself")
 
-    posts = fetch_all()
-    if not posts:
-        sys.exit("no posts parsed: the channel is empty or Telegram changed its page layout")
+    try:
+        posts = fetch_all()
+        if not posts:
+            raise RuntimeError("no posts parsed: the channel is empty or Telegram changed its page layout")
+    except Exception as exc:
+        if not (cache and (cache / "posts.json").exists()):
+            raise
+        posts = None
+        # "::warning::" shows up as an annotation on the GitHub Actions run page
+        print(f"::warning::Telegram fetch failed ({exc}); built with the cached posts")
 
     if out.exists():
         shutil.rmtree(out)
@@ -270,7 +301,12 @@ def main():
         src = ROOT / item
         (shutil.copytree if src.is_dir() else shutil.copy2)(src, out / item)
 
-    download_photos(posts, out)
+    if posts is None:
+        posts = load_cache(out, cache)
+    else:
+        download_photos(posts, out)
+        if cache:
+            save_cache(posts, out, cache)
     for lang in ("ru", "en"):
         fill_feed(out / lang / "index.html", feed_block(posts, lang))
     blog = (ROOT / "tools" / "blog-template.html").read_text(encoding="utf-8")

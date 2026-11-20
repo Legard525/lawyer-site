@@ -28,7 +28,7 @@ Her channel [@pro_lawyer](https://t.me/pro_lawyer) is mirrored onto the site (ad
 - Output: the latest 3 posts as cards in `#channel` on `ru/` and `en/` (between the `tg-feed` markers; without a build the section just links to the channel), and every post in full at `ru/blog/`. Photos are downloaded into `assets/tg/` because Telegram's image URLs expire.
 - Skipped: service messages, polls, and posts with no text or photo. Videos and files stay in Telegram with a note on the post.
 - `ONLY_TAG` in the script: set it to e.g. `"#сайт"` to mirror only tagged posts, if she'd rather choose what reaches the site.
-- Refresh: the workflow rebuilds hourly (`cron: 23 * * * *`), so a new post appears within about an hour. If Telegram is unreachable the build fails and the last good version stays live. Its keep-alive step re-enables the workflow so GitHub's 60-day inactivity pause doesn't stop the schedule.
+- Refresh: the workflow rebuilds hourly (`cron: 23 * * * *`), so a new post appears within about an hour. The workflow keeps the last good fetch in the Actions cache (`.tg-cache/`, `--cache`). If Telegram is unreachable, the build uses those posts and shows a warning on the run page, so site edits still deploy. A fresh repo has no cache, so its first build needs Telegram to answer. Its keep-alive step re-enables the workflow so GitHub's 60-day inactivity pause doesn't stop the schedule.
 - If posts stop appearing: run the script locally. "no posts parsed" means Telegram changed its page markup and `parse_page()` needs updating.
 
 ## Local preview
