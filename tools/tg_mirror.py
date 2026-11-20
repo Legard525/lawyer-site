@@ -14,6 +14,7 @@ Usage:  python3 tools/tg_mirror.py [--out _site]
 Needs:  beautifulsoup4
 """
 import argparse
+import hashlib
 import html
 import json
 import re
@@ -314,7 +315,24 @@ def main():
     (out / "ru" / "blog").mkdir(parents=True, exist_ok=True)
     (out / "ru" / "blog" / "index.html").write_text(blog, encoding="utf-8")
 
+    stamp_assets(out)
     print(f"{len(posts)} posts from @{CHANNEL} -> {out}")
+
+
+def stamp_assets(out):
+    """Append a content hash to the CSS/JS URLs in every page.
+
+    GitHub Pages lets browsers cache files for 10 minutes, so a new page could
+    otherwise load next to the old stylesheet."""
+    stamps = {}
+    for rel in ("assets/css/style.css", "assets/js/main.js"):
+        digest = hashlib.sha1((out / rel).read_bytes()).hexdigest()[:10]
+        stamps[rel] = f"{rel}?v={digest}"
+    for page in out.rglob("*.html"):
+        text = page.read_text(encoding="utf-8")
+        for rel, stamped in stamps.items():
+            text = text.replace(f'{rel}"', f'{stamped}"')
+        page.write_text(text, encoding="utf-8")
 
 
 if __name__ == "__main__":
