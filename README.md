@@ -7,7 +7,7 @@ Built 2026-07-05. No backend — plain HTML/CSS/JS on GitHub Pages. One build st
 ## Structure
 
 ```
-index.html          # root: JS language redirect (ru→/ru/, else /en/), noscript→/en/
+index.html          # root: always forwards to /ru/ (Russian is the default; EN via the switcher)
 en/index.html       # English one-pager
 ru/index.html       # Russian one-pager
 assets/css/style.css

@@ -217,7 +217,7 @@ def feed_block(posts, lang):
     return ('      <div class="feed-cards">\n' + "\n".join(cards) + "\n      </div>\n"
             '      <div class="feed-actions reveal">\n'
             f'        <a class="btn btn-solid" href="{post_href}">{all_label}</a>\n'
-            f'        <a class="btn btn-outline" href="https://t.me/{CHANNEL}">{sub_label}</a>\n'
+            f'        <a class="btn btn-outline" href="https://t.me/{CHANNEL}" target="_blank" rel="noopener">{sub_label}</a>\n'
             '      </div>')
 
 
@@ -239,7 +239,7 @@ def post_article(p):
                      f'target="_blank"><span>Ссылка</span>{html.escape(p["link"]["title"])}</a>')
     if p["media_in_tg"]:
         parts.append('        <p class="post-note">В публикации есть видео или файл — они доступны в Telegram.</p>')
-    parts.append(f'        <p class="post-foot"><a href="https://t.me/{CHANNEL}/{p["id"]}">Открыть в Telegram</a></p>')
+    parts.append(f'        <p class="post-foot"><a href="https://t.me/{CHANNEL}/{p["id"]}" target="_blank" rel="noopener">Открыть в Telegram</a></p>')
     parts.append("      </article>")
     return "\n".join(parts)
 

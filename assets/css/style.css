@@ -183,11 +183,10 @@ a { color: inherit; }
 .hero h1 {
   color: #fff;
   font-size: clamp(2.5rem, 5.4vw, 4.1rem);
-  max-width: 18ch;
 }
 
 .hero .lead {
-  max-width: 56ch;
+  max-width: 70ch;
   margin-top: 26px;
   font-size: 1.06rem;
   color: var(--muted-light);
@@ -356,7 +355,7 @@ a { color: inherit; }
 }
 .card p {
   font-size: 0.93rem;
-  color: var(--muted);
+  color: var(--text);
 }
 
 .services-foot {
@@ -419,8 +418,8 @@ a { color: inherit; }
   color: var(--gold-deep);
   margin-bottom: 16px;
 }
-.result h3 { font-size: 1.32rem; margin-bottom: 10px; }
-.result p { font-size: 0.92rem; color: var(--muted); }
+.result h3 { font-size: 1.5rem; margin-bottom: 12px; }
+.result p { font-size: 0.92rem; color: var(--text); }
 
 .results-note {
   margin-top: 36px;
@@ -564,7 +563,7 @@ a { color: inherit; }
   margin-bottom: 14px;
 }
 .feed-card h3 { font-size: 1.28rem; margin-bottom: 10px; }
-.feed-card p { font-size: 0.92rem; color: var(--muted); }
+.feed-card p { font-size: 0.92rem; color: var(--text); }
 .feed-more {
   margin-top: auto;
   padding-top: 18px;
@@ -595,9 +594,10 @@ a { color: inherit; }
 .post:first-child { padding-top: 0; }
 .post:last-child { border-bottom: 0; }
 .post h2 { font-size: 1.7rem; margin-bottom: 16px; }
-.post-media { display: grid; gap: 10px; margin-bottom: 22px; }
-.post-media img { display: block; width: 100%; height: auto; }
-.post-text a { color: var(--gold-deep); }
+/* Telegram serves photos at most 800px wide: show them at their own size, never upscaled */
+.post-media { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start; margin-bottom: 22px; }
+.post-media img { display: block; width: auto; height: auto; max-width: 70%; max-height: 520px; }
+.post-text a { color: var(--gold-deep); overflow-wrap: anywhere; }
 .post-link {
   display: block;
   margin-top: 18px;
