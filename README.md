@@ -13,7 +13,7 @@ ru/index.html       # Russian one-pager
 assets/css/style.css
 assets/js/main.js   # header scroll state, mobile menu, reveal-on-scroll, footer year
 assets/img/favicon.svg, portrait.jpg
-tools/tg_mirror.py            # build: site → _site/ + Telegram posts
+tools/tg_mirror.py            # build: site → _site/ + Telegram posts; adds ?v=<hash> to CSS/JS URLs (Pages caches them 10 min)
 tools/blog-template.html      # page shell for _site/ru/blog/ (all posts)
 .github/workflows/pages.yml   # hourly build + deploy to GitHub Pages
 ```
