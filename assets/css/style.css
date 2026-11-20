@@ -255,7 +255,7 @@ a { color: inherit; }
   display: flex;
   flex-wrap: wrap;
   gap: 20px 64px;
-  margin-top: 72px;
+  margin-top: 52px;
   padding: 30px 0 34px;
   border-top: 1px solid var(--line-dark);
 }
@@ -541,7 +541,7 @@ a { color: inherit; }
 
   .hero { padding-top: 140px; }
   .section { padding: 76px 0; }
-  .stats { gap: 20px 40px; margin-top: 56px; }
+  .stats { gap: 20px 40px; margin-top: 40px; }
   .stats dt { font-size: 2.2rem; }
 }
 
