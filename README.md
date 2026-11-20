@@ -1,6 +1,6 @@
 # lawyer-site
 
-Multilingual static website for **Ekaterina Aleksandrovna Nikolaenko** — Moscow civil-law attorney (Moscow City Bar, practicing since 2001). Repositions her existing RU-market site (pro-lawyer.ru) for **Russians living abroad** who need legal matters in Russia handled remotely: inheritance, real estate, family disputes, court representation under power of attorney. Design is restrained and premium: deep navy / muted gold, Cormorant Garamond + Inter.
+Multilingual static website for **Ekaterina Aleksandrovna Nikolaenko** — Moscow civil-law attorney (Moscow City Bar, practicing since 2001). A refresh of her existing site pro-lawyer.ru: civil cases for clients in **Moscow and the Moscow Region** (housing, inheritance, family disputes, court representation). An earlier plan to target Russians living abroad was dropped on 2026-11-20 at her request: payments from abroad are complicated, and foreign money carries legal risk for her. Don't reintroduce remote or cross-border wording. Design is restrained and premium: deep navy / muted gold, Cormorant Garamond + Inter.
 
 Built 2026-07-05. No backend — plain HTML/CSS/JS on GitHub Pages. One build step: `tools/tg_mirror.py` copies the site into `_site/` and fills it with posts from her Telegram channel.
 
@@ -63,8 +63,8 @@ Custom domain (no `CNAME` file needed: Actions deploys ignore it):
 - [x] **Regions** — Moscow plus some cases in Moscow Oblast; step 03 updated (2026-11-19)
 - [x] **Consultation languages** — Russian and English only; stat, About list, process step, contact text and meta updated (2026-11-19)
 - [x] **Telegram channel mirror** — see the section above (2026-11-20)
-- [ ] **Domain** — pick & buy (audience is abroad → `.com`/`.legal` over `.ru`); then hreflang blocks + `CNAME`
-- [ ] **DE / FR versions** — reconsider: she consults only in RU + EN. If still wanted: copy `en/` → `de/`, `fr/`, translate, extend the `.lang` switcher in all headers and the root redirect
+- [ ] **Domain** — move her existing pro-lawyer.ru to the new site once hosting is settled (GitHub Pages vs a Russian host); then fill the hreflang blocks
+- [x] **DE / FR versions** — dropped with the 2026-11-20 repositioning (local clients; she consults in RU + EN). If ever revived: copy `en/` → `de/`, `fr/`, translate, extend the `.lang` switcher in all headers and the root redirect
 
 ## Adding a language
 
@@ -73,3 +73,5 @@ Copy `en/index.html` → `<lang>/index.html`, translate, set `<html lang>`, `og:
 ## Facts source
 
 Credentials/practice details taken from pro-lawyer.ru (fetched 2026-07-05): Moscow City Bar member since 2002, RUDN law degrees (BA with distinction 2001, MA 2003), office Strastnoy Blvd 6/2, practice areas housing/inheritance/family + consumer/labor/debt. The site said "20+" years; the pages use 25, consistent with practicing since 2001.
+
+Refreshed 2026-11-20 from the live pro-lawyer.ru: practice-area lists, the case-handling steps, her 2007 «Домашний адвокат» publication, the quote «Обратитесь вовремя, буду рада быть полезной», and the office address (Страстной бульвар, 6, стр. 2; earlier pages wrongly said 6/2).
