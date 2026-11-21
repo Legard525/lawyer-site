@@ -1,6 +1,6 @@
 # lawyer-site
 
-Multilingual static website for **Ekaterina Aleksandrovna Nikolaenko** — Moscow civil-law attorney (Moscow City Bar, practicing since 2001). A refresh of her existing site pro-lawyer.ru: civil cases for clients in **Moscow and the Moscow Region** (housing, inheritance, family disputes, court representation). An earlier plan to target Russians living abroad was dropped on 2026-11-20 at her request: payments from abroad are complicated, and foreign money carries legal risk for her. Don't reintroduce remote or cross-border wording. Design is restrained and premium: deep navy / muted gold, Cormorant Garamond + Inter.
+Multilingual static website for **Ekaterina Aleksandrovna Nikolaenko** — Moscow attorney (Moscow City Bar, practicing since 2001; civil cases mainly, criminal too). A refresh of her existing site pro-lawyer.ru: civil cases for clients in **Moscow and the Moscow Region** (housing, inheritance, family disputes, court representation). An earlier plan to target Russians living abroad was dropped on 2026-11-20 at her request: payments from abroad are complicated, and foreign money carries legal risk for her. Don't reintroduce remote or cross-border wording. Design is restrained and premium: deep navy / muted gold, Cormorant Garamond + Inter.
 
 Built 2026-07-05. No backend — plain HTML/CSS/JS on GitHub Pages. One build step: `tools/tg_mirror.py` copies the site into `_site/` and fills it with posts from her Telegram channel.
 
