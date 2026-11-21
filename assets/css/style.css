@@ -450,6 +450,18 @@ a { color: inherit; }
 .result h3 { font-size: 1.5rem; margin-bottom: 12px; }
 .result p { font-size: 0.92rem; color: var(--text); }
 
+.result { display: flex; flex-direction: column; }
+.result-source {
+  margin-top: auto;
+  padding-top: 18px;
+  font-size: 0.8rem;
+  color: var(--gold-deep);
+  text-decoration: none;
+}
+.result-source:hover { text-decoration: underline; }
+.map-link { color: var(--gold); }
+.map-link:hover { color: #fff; }
+
 .results-note {
   margin-top: 36px;
   font-size: 0.82rem;
