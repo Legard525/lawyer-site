@@ -461,6 +461,7 @@ a { color: inherit; }
   text-decoration: none;
 }
 .result-source:hover { text-decoration: underline; }
+.nowrap { white-space: nowrap; }
 .map-link { color: var(--gold); }
 .map-link:hover { color: #fff; }
 
