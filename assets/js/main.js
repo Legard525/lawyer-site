@@ -45,8 +45,9 @@ document.querySelectorAll(".scroll-btn").forEach((btn) => {
   if (!strip) return;
   const dir = Number(btn.dataset.dir);
   const update = () => {
-    const max = strip.scrollWidth - strip.clientWidth - 1;
-    btn.disabled = dir < 0 ? strip.scrollLeft <= 0 : strip.scrollLeft >= max;
+    // a few px of slack: scroll snapping can leave the strip 1-2px off either end
+    const max = strip.scrollWidth - strip.clientWidth - 4;
+    btn.disabled = dir < 0 ? strip.scrollLeft <= 4 : strip.scrollLeft >= max;
   };
   btn.addEventListener("click", () => {
     const card = strip.querySelector(".result");
