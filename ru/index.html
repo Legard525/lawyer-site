@@ -80,7 +80,7 @@
         <p class="reveal">Хотя закон в России позволяет вести гражданское дело самостоятельно, адвокат нужен, чтобы Вам не пришлось лично ходить на затяжные и сложные, эмоционально и юридически, судебные заседания. Также мое участие в качестве представителя избавляет Вас от необходимости самостоятельно вести переговоры с другой стороной. По Вашему поручению я изучаю ситуацию, выстраиваю правовую позицию и представляю Ваши интересы в суде по доверенности.</p>
         <ul class="creds reveal">
           <li>Адвокат Московской городской коллегии адвокатов — с 2002 года</li>
-          <li>Регистрационный номер в <a href="https://minjust.gov.ru/ru/pages/advokaty-rossijskoj-federacii/" target="_blank" rel="noopener">реестре адвокатов Минюста России</a> — 77/3685</li>
+          <li>Регистрационный номер в <a href="https://minjust.gov.ru/ru/pages/advokaty-rossijskoj-federacii/" target="_blank" rel="noopener">Едином государственном реестре адвокатов</a> — 77/3685</li>
           <li>Юридическое образование — РУДН: бакалавриат с отличием (2001), магистратура (2003)</li>
           <li>25 лет судебной практики: наследство, жильё и недвижимость, семейные споры</li>
           <li>Офис: Страстной бульвар, 6, стр. 2, Москва</li>
@@ -151,56 +151,72 @@
 
   <section class="section" id="results">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head results-head">
         <h2 class="reveal">Избранные результаты</h2>
+        <div class="scroll-nav reveal">
+          <button class="scroll-btn" type="button" data-target="result-strip" data-dir="-1" aria-label="Назад">←</button>
+          <button class="scroll-btn" type="button" data-target="result-strip" data-dir="1" aria-label="Вперёд">→</button>
+        </div>
       </div>
-      <div class="result-cards">
-        <div class="result reveal">
+      <div class="result-cards reveal" id="result-strip" tabindex="0" aria-label="Результаты, прокрутите вбок">
+        <div class="result">
           <span class="result-tag">Жильё</span>
           <h3>Апелляция в Мосгорсуде: решение отменено</h3>
           <p>Спор о правах на московскую квартиру: проигрыш первой инстанции обращён в полную победу в апелляции, право клиента защищено.</p>
         </div>
-        <div class="result reveal">
-          <span class="result-tag">Наследство</span>
-          <h3>Завещание устояло</h3>
-          <p>Защита наследников от попытки оспорить завещание. Воля наследодателя исполнена, имущество распределено, как и было задумано.</p>
-        </div>
-        <div class="result reveal">
+        <div class="result">
           <span class="result-tag">Семейный спор</span>
           <h3>Раздел имущества супругов</h3>
           <p>Спор о разделе совместно нажитого имущества. Другая сторона подала встречный иск, требования уточнялись по ходу дела; суд удовлетворил иск доверителя.</p>
           <a class="result-source" href="https://vidnoe.mo.sudrf.ru/modules.php?name=sud_delo&amp;srv_num=1&amp;name_op=case&amp;case_id=1207608353&amp;case_uid=4e714356-3bc7-49de-9b0a-1051a1ca8c5b&amp;delo_id=1540005" target="_blank" rel="noopener">Видновский городской суд, дело <span class="nowrap">№&nbsp;2-8160/2024</span> →</a>
         </div>
-        <div class="result reveal">
+        <div class="result">
+          <span class="result-tag">Семейный спор</span>
+          <h3>Лишение родительских прав</h3>
+          <p>Иск о лишении второго родителя родительских прав. После нескольких заседаний суд удовлетворил иск доверителя, решение вступило в силу.</p>
+          <a class="result-source" href="https://www.mos-gorsud.ru/rs/shcherbinskij/services/cases/civil/details/59efe060-7782-11ed-9bf5-8da6820b613d" target="_blank" rel="noopener">Щербинский районный суд, дело <span class="nowrap">№&nbsp;02-2657/2023</span> →</a>
+        </div>
+        <div class="result">
+          <span class="result-tag">Наследство</span>
+          <h3>Завещание устояло</h3>
+          <p>Защита наследников от попытки оспорить завещание. Воля наследодателя исполнена, имущество распределено, как и было задумано.</p>
+        </div>
+        <div class="result">
           <span class="result-tag">Трудовой спор</span>
           <h3>Компенсация без затяжного процесса</h3>
           <p>Спор с работодателем завершён переговорами — с выплатой компенсации клиенту и без месяцев судебных заседаний.</p>
         </div>
-        <div class="result reveal">
+        <div class="result">
+          <span class="result-tag">Трудовой спор</span>
+          <h3>Мировое соглашение с работодателем</h3>
+          <p>Иск работника к компании-работодателю. Стороны заключили мировое соглашение, и суд утвердил его в первом же заседании.</p>
+          <a class="result-source" href="https://mos-gorsud.ru/rs/lefortovskij/services/cases/civil/details/5ee505f0-5bc3-11eb-8050-bdce19b7494a" target="_blank" rel="noopener">Лефортовский районный суд, дело <span class="nowrap">№&nbsp;02-0853/2021</span> →</a>
+        </div>
+        <div class="result">
           <span class="result-tag">ДТП</span>
           <h3>Мировое соглашение за одно заседание</h3>
           <p>Иск о возмещении вреда после ДТП: ремонт автомобиля, эвакуация, заключение специалиста, судебные расходы и моральный вред. Мировое соглашение заключено на выгодных для доверителя условиях: он получил более 90% суммы иска.</p>
           <a class="result-source" href="https://www.mos-gorsud.ru/rs/zamoskvoreckij/services/cases/civil/details/958a5e50-f6a7-11f0-b6d6-a71714b206d9" target="_blank" rel="noopener">Замоскворецкий районный суд, дело <span class="nowrap">№&nbsp;02-0638/2026</span> →</a>
         </div>
-        <div class="result reveal">
+        <div class="result">
           <span class="result-tag">Арбитраж</span>
           <h3>Иск энергосбыта отклонён</h3>
           <p>Иск ОАО «Мосэнергосбыт» о взыскании долга за электроэнергию. Адвокат представляла третьих лиц на стороне ответчика, СНТ «Луна»; суд отказал в иске в полном объёме.</p>
           <a class="result-source" href="https://kad.arbitr.ru/Document/Pdf/123db63c-c53b-48ce-b683-97114efc54a3/A41-49194-2012_20131212_Postanovlenie%20apelljacionnoj%20instancii.pdf?isAddStamp=True" target="_blank" rel="noopener">Десятый арбитражный апелляционный суд, дело <span class="nowrap">№&nbsp;А41-49194/2012</span> →</a>
         </div>
-        <div class="result reveal">
+        <div class="result">
           <span class="result-tag">Уголовное дело</span>
           <h3>Условно-досрочное освобождение</h3>
           <p>Адвокат подготовила ходатайство об условно-досрочном освобождении и представляла доверителя в судебном заседании. Суд ходатайство удовлетворил.</p>
           <a class="result-source" href="https://www.mos-gorsud.ru/rs/preobrazhenskij/services/cases/criminal-materials/details/02221f10-f8ae-11ea-af9a-ddbdc0cdaf78" target="_blank" rel="noopener">Преображенский районный суд, материал <span class="nowrap">№&nbsp;4/1-0062/2020</span> →</a>
         </div>
-        <div class="result reveal">
+        <div class="result">
           <span class="result-tag">Уголовное дело</span>
           <h3>Мосгорсуд подтвердил прекращение дела</h3>
           <p>Обвинение в краже, преступлении средней тяжести. Суд прекратил уголовное дело за примирением сторон, Мосгорсуд оставил это решение в силе.</p>
           <a class="result-source" href="https://mos-gorsud.ru/mgs/services/cases/appeal-criminal/details/84b291e0-324a-11f1-9906-5ff05a142d7d" target="_blank" rel="noopener">Московский городской суд, дело <span class="nowrap">№&nbsp;10-7995/2026</span> →</a>
         </div>
-        <div class="result reveal">
+        <div class="result">
           <span class="result-tag">Административное дело</span>
           <h3>Штраф МАДИ отменён</h3>
           <p>Жалоба на постановление МАДИ о штрафе за парковку. Суд отменил постановление: события и состава правонарушения нет, это реабилитирующее основание.</p>

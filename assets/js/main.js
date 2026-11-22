@@ -39,6 +39,25 @@ if ("IntersectionObserver" in window) {
   revealed.forEach((el) => el.classList.add("visible"));
 }
 
+// Results strip: arrow buttons scroll by one card and disable at either end
+document.querySelectorAll(".scroll-btn").forEach((btn) => {
+  const strip = document.getElementById(btn.dataset.target);
+  if (!strip) return;
+  const dir = Number(btn.dataset.dir);
+  const update = () => {
+    const max = strip.scrollWidth - strip.clientWidth - 1;
+    btn.disabled = dir < 0 ? strip.scrollLeft <= 0 : strip.scrollLeft >= max;
+  };
+  btn.addEventListener("click", () => {
+    const card = strip.querySelector(".result");
+    const step = card ? card.getBoundingClientRect().width + 24 : 320;
+    strip.scrollBy({ left: dir * step, behavior: "smooth" });
+  });
+  strip.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+});
+
 // Current year in the footer
 document.querySelectorAll("[data-year]").forEach((el) => {
   el.textContent = new Date().getFullYear();

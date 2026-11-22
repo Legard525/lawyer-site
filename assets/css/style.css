@@ -430,11 +430,42 @@ a { color: inherit; }
 
 /* ---------- results ---------- */
 
-.result-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 36px;
+.results-head {
+  max-width: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
 }
+.scroll-nav { display: flex; gap: 10px; flex: none; }
+.scroll-btn {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(11, 21, 36, 0.3);
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.scroll-btn:hover:not(:disabled) { border-color: var(--gold-deep); color: var(--gold-deep); }
+.scroll-btn:disabled { opacity: 0.3; cursor: default; }
+
+/* one row of cards that scrolls sideways (swipe, trackpad or the arrows) */
+.result-cards {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 2px 2px 18px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.result-cards::-webkit-scrollbar { height: 6px; }
+.result-cards::-webkit-scrollbar-thumb { background: var(--line); }
+.result-cards:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.result-cards .result { flex: 0 0 300px; scroll-snap-align: start; }
 .result {
   background: #fff;
   border: 1px solid var(--line);
@@ -531,6 +562,8 @@ a { color: inherit; }
 
 @media (max-width: 860px) {
   .burger { display: flex; }
+  .result-cards .result { flex-basis: 82%; }
+  .results-head { margin-bottom: 28px; }
 
   .site-nav {
     position: fixed;
