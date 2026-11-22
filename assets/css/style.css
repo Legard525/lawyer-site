@@ -356,6 +356,8 @@ a { color: inherit; }
   background: var(--gold-deep);
 }
 
+.creds a { color: var(--gold-deep); text-underline-offset: 2px; }
+
 .quote {
   border-left: 2px solid var(--gold);
   padding-left: 24px;
