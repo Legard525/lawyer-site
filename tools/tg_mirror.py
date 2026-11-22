@@ -35,7 +35,7 @@ ONLY_TAG = None
 HOME_CARDS = 3
 
 ROOT = Path(__file__).resolve().parent.parent
-PUBLISHED = ["index.html", "en", "ru", "assets"]
+PUBLISHED = ["index.html", "en", "ru", "assets", "robots.txt", "sitemap.xml"]
 UA = "Mozilla/5.0 (compatible; site-builder)"
 MSK = timezone(timedelta(hours=3))
 RU_MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля",

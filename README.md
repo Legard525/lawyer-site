@@ -63,7 +63,7 @@ Custom domain (no `CNAME` file needed: Actions deploys ignore it):
 - [x] **Regions** — Moscow plus some cases in Moscow Oblast; step 03 updated (2026-11-19)
 - [x] **Consultation languages** — Russian and English only; stat, About list, process step, contact text and meta updated (2026-11-19)
 - [x] **Telegram channel mirror** — see the section above (2026-11-20)
-- [ ] **Domain** — move her existing pro-lawyer.ru to the new site once hosting is settled (GitHub Pages vs a Russian host); then fill the hreflang blocks
+- [ ] **Domain** — advokat-nikolaenko.ru, registered 2026-11-22 at REG.RU in her account (paid to 2027-11-22). Hosting: GitHub Pages. Canonical/hreflang/og tags, `sitemap.xml` and `robots.txt` already use it. Left: A/AAAA/CNAME records at REG.RU, then the repo's Pages custom domain + Enforce HTTPS (set the custom domain only after DNS resolves, or github.io starts redirecting to a dead domain)
 - [x] **DE / FR versions** — dropped with the 2026-11-20 repositioning (local clients; she consults in RU + EN). If ever revived: copy `en/` → `de/`, `fr/`, translate, extend the `.lang` switcher in all headers and the root redirect
 
 ## Adding a language
