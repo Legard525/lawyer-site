@@ -13,7 +13,8 @@ ru/index.html       # Russian one-pager
 assets/css/style.css
 assets/js/main.js   # header scroll state, mobile menu, reveal-on-scroll, footer year
 assets/img/favicon.svg, portrait.jpg
-tools/tg_mirror.py            # build: site → _site/ + Telegram posts; adds ?v=<hash> to CSS/JS URLs (Pages caches them 10 min)
+tools/tg_mirror.py            # build: site → _site/ + Telegram posts; adds ?v=<hash> to CSS/JS URLs (Pages caches them 10 min);
+                              #   hides phones/e-mails from harvesters (base64 + inline decoder; source pages keep them plain)
 tools/blog-template.html      # page shell for _site/ru/blog/ (all posts)
 .github/workflows/pages.yml   # daily build + deploy to GitHub Pages (and on every push)
 ```
@@ -63,7 +64,7 @@ Custom domain (no `CNAME` file needed: Actions deploys ignore it):
 - [x] **Regions** — Moscow plus some cases in Moscow Oblast; step 03 updated (2026-11-19)
 - [x] **Consultation languages** — Russian and English only; stat, About list, process step, contact text and meta updated (2026-11-19)
 - [x] **Telegram channel mirror** — see the section above (2026-11-20)
-- [x] **Domain** — advokat-nikolaenko.ru (REG.RU, her account, paid to 2027-11-22; Госуслуги-verified 23 Nov). DNS: 4× A @ → 185.199.108–111.153, CNAME www → legard525.github.io. Pages custom domain set 2026-11-24; github.io/lawyer-site now 301-redirects there. Enforce HTTPS once the certificate is approved
+- [x] **Domain** — advokat-nikolaenko.ru (REG.RU, her account, paid to 2027-11-22; Госуслуги-verified 23 Nov). DNS: 4× A @ → 185.199.108–111.153, CNAME www → legard525.github.io. Pages custom domain set 2026-11-24; github.io/lawyer-site now 301-redirects there. HTTPS certificate approved and enforced the same day, but it covers the bare domain only (www didn't resolve yet when it was issued): https://www shows a certificate error, http://www redirects fine. Left as is on 2026-11-24. Fix if needed: remove the Pages custom domain, wait until the old certificate is dropped, re-add it (~10 min of downtime)
 - [x] **DE / FR versions** — dropped with the 2026-11-20 repositioning (local clients; she consults in RU + EN). If ever revived: copy `en/` → `de/`, `fr/`, translate, extend the `.lang` switcher in all headers and the root redirect
 
 ## Adding a language

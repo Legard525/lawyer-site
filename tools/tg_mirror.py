@@ -14,6 +14,7 @@ Usage:  python3 tools/tg_mirror.py [--out _site]
 Needs:  beautifulsoup4
 """
 import argparse
+import base64
 import hashlib
 import html
 import json
@@ -315,8 +316,49 @@ def main():
     (out / "ru" / "blog").mkdir(parents=True, exist_ok=True)
     (out / "ru" / "blog" / "index.html").write_text(blog, encoding="utf-8")
 
+    hide_contacts(out)
     stamp_assets(out)
     print(f"{len(posts)} posts from @{CHANNEL} -> {out}")
+
+
+# Russian phone numbers (+7 or 8, then 10 digits in any grouping) and e-mail addresses
+PHONE_RE = re.compile(r"(?:\+7|(?<!\d)8)[\s ‑()-]*\d{3}[\s ‑()-]*\d{3}"
+                      r"[\s ‑-]*\d{2}[\s ‑-]*\d{2}(?!\d)")
+EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+")
+CONTACT_HREF_RE = re.compile(r'href="((?:tel:|mailto:|https://wa\.me/)[^"]*)"')
+# Decodes the contacts in the browser; inline, so they show before the first paint
+DECODE_JS = ('<script>document.querySelectorAll("[data-c],[data-t]").forEach(function(e){'
+             'function d(s){return new TextDecoder().decode(Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)}))}'
+             'if(e.dataset.c)e.href=d(e.dataset.c);if(e.dataset.t)e.textContent=d(e.dataset.t)});</script>\n')
+
+
+def hide_contacts(out):
+    """Keep phone numbers and e-mails out of the published HTML.
+
+    Address harvesters read the raw page; they get base64 in data attributes,
+    and the script above turns it back into links and text for visitors.
+    Without JavaScript the words «телефон» / «e-mail» show instead."""
+    b64 = lambda s: base64.b64encode(s.encode()).decode()
+    for page in out.rglob("*.html"):
+        text = page.read_text(encoding="utf-8")
+        ru = 'lang="ru"' in text[:200]
+        fallback = {"phone": "телефон" if ru else "phone", "email": "e-mail"}
+
+        def hide(kind):
+            return lambda m: f'<span data-t="{b64(m.group(0))}">{fallback[kind]}</span>'
+
+        parts = re.split(r"(<[^>]+>)", text)
+        changed = False
+        for i, part in enumerate(parts):
+            if part.startswith("<"):
+                new = CONTACT_HREF_RE.sub(lambda m: f'href="#" data-c="{b64(html.unescape(m.group(1)))}"', part)
+            else:
+                new = EMAIL_RE.sub(hide("email"), PHONE_RE.sub(hide("phone"), part))
+            changed |= new != part
+            parts[i] = new
+        if changed:
+            text = "".join(parts).replace("</body>", DECODE_JS + "</body>", 1)
+            page.write_text(text, encoding="utf-8")
 
 
 def stamp_assets(out):
